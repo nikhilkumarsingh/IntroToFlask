@@ -46,31 +46,13 @@ def get_student(roll_no):
 
 	if request.method == 'GET':
 		return json_util.dumps(student)
-
 	elif request.method == 'PATCH':
-		# student.update(request.form)
 		student_record.update_one({'roll_no':roll_no}, {'$set':request.form})
 		return jsonify({"result": "Student record successfully updated!"})
-
 	elif request.method == 'DELETE':
 		student_record.delete_one({'roll_no':roll_no})
 		return jsonify({"result": "Student record successfully deleted!"})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		
 
 if __name__ == "__main__":
 	app.run(port=8000, use_reloader=True, debug=True)
